@@ -86,7 +86,7 @@ class fragment_Contact : Fragment() {
                 number = number.replace("\\s".toRegex(), "")
                 val num = number.elementAt(0).toString()
                 if (num == "0")
-                    number = number.replaceFirst("(?:0)+".toRegex(), "+92")
+                    number = number.replaceFirst("(?:0)+".toRegex(), "+91")
                 val userModel = UserModel()
                 userModel.name = name
                 userModel.number = number
