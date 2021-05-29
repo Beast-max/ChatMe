@@ -50,6 +50,7 @@ class getUserData : Fragment() {
             if (checkData()) {
                 uploadData(username, status, image!!)
             }
+
         }
 
         view.imgPickImage.setOnClickListener {

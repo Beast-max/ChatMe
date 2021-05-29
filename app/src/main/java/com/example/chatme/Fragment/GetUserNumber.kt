@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.chatme.R
 import com.example.chatme.UserModel
+import com.fevziomurtekin.customprogress.Dialog
+import com.fevziomurtekin.customprogress.Type
+import com.fevziomurtekin.customprogress.Visibility
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.FirebaseAuth
@@ -20,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_get_user_number.view.*
 import java.util.concurrent.TimeUnit
 
 class GetUserNumber : Fragment() {
-
+    private lateinit var progressbar : Dialog
     private var number: String? = null
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private var code: String? = null
@@ -38,6 +41,11 @@ class GetUserNumber : Fragment() {
             if (checkNumber()) {
                 val phoneNumber = view.countryCodePicker.selectedCountryCodeWithPlus + number
                 sendCode(phoneNumber)
+                progressbar =getView()!!.findViewById( R.id.progress)
+                progressbar.settype(Type.PACMAN)
+
+                progressbar.show()
+
             }
         }
 
@@ -79,7 +87,7 @@ class GetUserNumber : Fragment() {
                     .beginTransaction()
                     .replace(R.id.main_container, VerifyNumber.newInstance(code!!))
                     .commit()
-
+                progressbar.gone()
 
             }
         }
